@@ -65,7 +65,6 @@ public class BaseMongoDao
      */
     public JSONObject findById(String id, DBCollection dbc)
     {
-        
         DBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(id));
         

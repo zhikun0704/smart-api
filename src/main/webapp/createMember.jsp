@@ -1,18 +1,12 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 
 <%@ taglib prefix="tranb" uri="/WEB-INF/tld/tranb-ocr.tld"%>
-
 <%@ include file="/inc-common.jsp"%>
 
 <body>
 	<div id="page-loading-mask"></div>
-
 	<div class="wrapper">
-
 		<%@ include file="/inc-menu-head.jsp"%>
-
-
-
 		<div class="container workspace">
 			<!-- 
 			<div class="page">
@@ -25,7 +19,6 @@
 			</div>
 			 -->
 			<div class="page">
-
 				<div class="page-inner" id="page-invite" data-page-name="邮件邀请">
 					<h3>邮件邀请</h3>
 					<form class="form form-invite"
@@ -52,9 +45,13 @@
 												
 												<option value="0">小组</option>
 												<option disabled>-----</option>
-												<c:forEach var="obj" items="${allUserGroup }">
-													<option value="${obj.id }">${obj.groupName }</option>
-												</c:forEach>
+												<c:if test="allUserGroup!=null">
+													<c:forEach var="obj" items="${allUserGroup }">
+													    <c:if test="obj!=null">
+															<option value="${obj.id }">${obj.groupName }</option>												    
+													    </c:if>
+													</c:forEach>
+												</c:if>
 											</select>
 										</div>
 									</div>
@@ -77,9 +74,13 @@
 												name="subgroup_id" tabindex="-1">
 												<option value="0">小组</option>
 												<option disabled>-----</option>
-												<c:forEach var="obj" items="${allUserGroup }">
-													<option value="${obj.id }">${obj.groupName }</option>
-												</c:forEach>
+												<c:if test="allUserGroup!=null">
+													<c:forEach var="obj" items="${allUserGroup }">
+													    <c:if test="obj!=null">
+															<option value="${obj.id }">${obj.groupName }</option>												    
+													    </c:if>
+													</c:forEach>
+												</c:if>
 											</select>
 										</div>
 									</div>
@@ -102,9 +103,13 @@
 												name="subgroup_id" tabindex="-1">
 												<option value="0">小组</option>
 												<option disabled>-----</option>
-												<c:forEach var="obj" items="${allUserGroup }">
-													<option value="${obj.id}">${obj.groupName }</option>
-												</c:forEach>
+												<c:if test="allUserGroup!=null">
+													<c:forEach var="obj" items="${allUserGroup }">
+													    <c:if test="obj!=null">
+															<option value="${obj.id }">${obj.groupName }</option>												    
+													    </c:if>
+													</c:forEach>
+												</c:if>
 											</select>
 										</div>
 									</div>
@@ -155,17 +160,12 @@
 						</div>
 					</form>
 				</div>
-
 			</div>
 		</div>
 		<%@ include file="/inc-content-foot.jsp"%>
-
-
 	</div>
 
 	<%@ include file="/inc-foot.jsp"%>
-
-
 </body>
 </html>
 

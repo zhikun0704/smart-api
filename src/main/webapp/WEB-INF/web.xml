@@ -15,10 +15,10 @@
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>
-				classpath:system-init.xml,
-				classpath:spring-mvc.xml,
-				classpath:conf-mongodb.xml
-			</param-value>
+                classpath:system-init.xml,
+                classpath:spring-mvc.xml,
+                classpath:conf-mongodb.xml
+            </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
         <async-supported>true</async-supported>
@@ -27,8 +27,8 @@
         <servlet-name>spring-mvc</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-	
-	<!-- Log4J -->
+    
+    <!-- Log4J -->
     <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
@@ -58,7 +58,7 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
-    <error-page>
+    <!-- <error-page>
         <error-code>404</error-code>
         <location>/404.jsp</location>
     </error-page>
@@ -71,5 +71,5 @@
     <error-page>
         <exception-type>java.lang.NullException</exception-type>
         <location>/404.jsp</location>
-    </error-page>
+    </error-page> -->
 </web-app>

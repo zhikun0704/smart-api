@@ -10,10 +10,8 @@
 <%@ page import="java.util.*"%>
 
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <!DOCTYPE html>
 <html>
@@ -37,65 +35,51 @@
 <link rel="icon" href="/smart-api/assets/favicon.ico" sizes="128x128" />
 <link rel="apple-touch-icon-precomposed" href="/smart-api/assets/logo-sign-dff6b8806ae5cfa80c84502bb5e07c17.png" />
 <link rel="stylesheet" href="/smart-api/assets/font-awesome/css/font-awesome.css">
-<link
-	href="/smart-api/assets/application-39d12b990af1fdb03ea3fd8788854c4d.css"
-	media="all" rel="stylesheet" type="text/css" />
-<script
-	src="/smart-api/assets/application-74c92b03cc0c853fd2e79cbf39f635a4.js"
-	type="text/javascript"></script>
-	<script src="/smart-api/assets/common.js"></script>
+<link href="/smart-api/assets/application-39d12b990af1fdb03ea3fd8788854c4d.css" media="all" rel="stylesheet" type="text/css" />
+<script src="/smart-api/assets/application-74c92b03cc0c853fd2e79cbf39f635a4.js" type="text/javascript"></script>
+<script src="/smart-api/assets/common.js"></script>
 <style type="text/css">
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p,
-	blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd,
-	q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
-	fieldset, form, label, legend, input, textarea, table, caption, tbody,
-	tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption,
-	figure, footer, header, hgroup, menu, nav, section, summary, time, mark,
-	audio, video {
-	font-size: 14px;
-	font-family: "微软雅黑";
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q,
+  samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, input, textarea, table, caption, tbody, tfoot,
+  thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio,
+  video {
+  font-size: 14px;
+  font-family: "微软雅黑";
 }
 
 th, td {
-	padding: 10px 2px;
-	vertical-align: middle;
+  padding: 10px 2px;
+  vertical-align: middle;
 }
 
 input, select, input, input[type='text'] {
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	height: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  height: auto;
 }
 
 .pagenum {
-	text-align: right;
-	padding: 0px 20px 20px 0;
+  text-align: right;
+  padding: 0px 20px 20px 0;
 }
 
 .pagenum a {
-	display: inline-block;
-	padding: 5px 10px;
-	border: 1px solid transparent;
-	border-radius: 5px;
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  border-radius: 5px;
 }
 
 .pagenum a:hover {
-	border-color: #ddd;
+  border-color: #ddd;
 }
 
 .simple-stack {
-	min-width: 1000px;
-	width: 60%;
+  min-width: 1000px;
+  width: 60%;
 }
 </style>
 
-
-
-
-
 <meta content="authenticity_token" name="csrf-param" />
-<meta content="c7U5kEauvgTW+DTJYDNc3LpykVHnGZQnFdmZ0B+C0Tk="
-	name="csrf-token" />
-
-
+<meta content="c7U5kEauvgTW+DTJYDNc3LpykVHnGZQnFdmZ0B+C0Tk=" name="csrf-token" />
 </head>
