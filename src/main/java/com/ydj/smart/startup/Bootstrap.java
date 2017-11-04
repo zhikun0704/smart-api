@@ -19,7 +19,6 @@ import java.io.PrintStream;
 @RestController("/")
 public class Bootstrap extends WebMvcConfigurerAdapter
 {
-    
     /**
      * Start spring-boot
      * 
@@ -46,5 +45,4 @@ public class Bootstrap extends WebMvcConfigurerAdapter
         });
         new SpringApplicationBuilder(Bootstrap.class).run(args);
     }
-    
 }

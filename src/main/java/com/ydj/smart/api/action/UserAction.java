@@ -1,6 +1,21 @@
 /** **/
 package com.ydj.smart.api.action;
 
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.ydj.smart.api.constant.Constant;
 import com.ydj.smart.api.dao.ApiDao;
 import com.ydj.smart.api.dao.SysConfDao;
@@ -9,20 +24,8 @@ import com.ydj.smart.api.dao.UserDao;
 import com.ydj.smart.api.web.BaseAction;
 import com.ydj.smart.common.tools.CommonUtils;
 import com.ydj.smart.common.tools.MailUtils;
-import net.sf.json.JSONObject;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import net.sf.json.JSONObject;
 
 /**
  * @author : Ares.yi
@@ -65,6 +68,7 @@ public class UserAction extends BaseAction
         
         List<JSONObject> allUserGroup = this.userDao.getAllUserGroup(companyId);
         List<JSONObject> allItem = this.apiDao.getAllItem(companyId);
+        
         request.setAttribute("allItem", allItem);
         request.setAttribute("allUserGroup", allUserGroup);
         
@@ -175,7 +179,6 @@ public class UserAction extends BaseAction
     @RequestMapping("addUser")
     public String addUser(HttpServletRequest request, HttpServletResponse response) throws Exception
     {
-        
         String companyId = this.getCompanyId(request, response);
         
         String opreater = this.getUser(request, response);
@@ -213,15 +216,18 @@ public class UserAction extends BaseAction
             }
             else
             {
-                JSONObject userGroup = this.userDao.findUserGroupById(groupId);
-                if (userGroup != null)
+                if (!"0".equals(groupId))// 没有加入任何组
                 {
-                    groupName = userGroup.optString("groupName");
-                    userGroupTempMap.put(groupId, userGroup);
+                    JSONObject userGroup = this.userDao.findUserGroupById(groupId);
+                    if (userGroup != null)
+                    {
+                        groupName = userGroup.optString("groupName");
+                        userGroupTempMap.put(groupId, userGroup);
+                    }
                 }
             }
             
-            String password = email.substring(0, 6);// CommonUtils.getRandomNumber(100000,999999)+"";
+            String password = "123456";// email.substring(0, 6);// CommonUtils.getRandomNumber(100000,999999)+"";
             JSONObject user = new JSONObject();
             user.put("companyId", companyId);
             user.put("email", email);
@@ -240,8 +246,10 @@ public class UserAction extends BaseAction
             String sysName = Constant.getPro("sysName");
             String mailContent = new StringBuilder().append("你在").append(sysName).append("系统使用信息如下:<br>").append("邮箱:" + email).append("<br>")
                     .append("密码:" + password).append("<br><br>")
-                    // .append( ( permissionAPI != null && permissionAPI.length > 0 ) ?
-                    // "你暂可查看"+user.getJSONArray("permissionAPI").toString()+"系统相关API" : "" )
+                    // .append( ( permissionAPI != null && permissionAPI.length
+                    // > 0 ) ?
+                    // "你暂可查看"+user.getJSONArray("permissionAPI").toString()+"系统相关API"
+                    // : "" )
                     // .append("<br><br>")
                     .append("访问地址：<a href='").append(Constant.WEB_ROOT).append("'>").append(Constant.WEB_ROOT).append("</href>").toString();
             MailUtils.asynSend(MailUtils.REG_NOREPLY, email, sysName + "系统使用信息", mailContent);
@@ -421,7 +429,7 @@ public class UserAction extends BaseAction
         }
         String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wxAppId + "&redirect_uri=" + wxAuthCallackUrl + "%3fitemId%3d" + itemId
                 + "%26email%3d" + user.optString("email") + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-        String encodeUrl = URLEncoder.encode(url);
+        String encodeUrl = URLEncoder.encode(url, "UTF-8");
         request.setAttribute("url", url);
         request.setAttribute("encodeUrl", encodeUrl);
         
